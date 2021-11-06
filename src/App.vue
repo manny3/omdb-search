@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
 import years from './assets/json/years.json'
@@ -99,7 +98,7 @@ export default {
     getSearchMovieList () {
       this.isLoading = true
       const params = this.query
-      axios.get(apiUrl, { params })
+      this.axios.get(apiUrl, { params })
         .then((res) => {
           if (res.data.Response === 'False') {
             this.movieList = []
@@ -125,7 +124,7 @@ export default {
         apikey: process.env.VUE_APP_API_KEY,
         i: id
       }
-      axios.get(apiUrl, { params })
+      this.axios.get(apiUrl, { params })
         .then((res) => {
           const { Title, Genre, Actors, Plot, Poster } = res.data
           this.movieCount.title = Title
